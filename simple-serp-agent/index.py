@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import os
 from langchain import hub
 from langchain_community.llms import OpenAI
 from langchain_community.utilities import SerpAPIWrapper
@@ -8,8 +9,10 @@ from langchain.agents import AgentExecutor
 import langchain  # 导入langchain模块
 
 # 启用全局调试模式
-langchain.debug = True
+# langchain.debug = True
 
+
+# os.environ["LANGCHAIN_PROJECT"] = 'agent-demo'
 
 # 加载环境变量
 load_dotenv()
@@ -19,7 +22,7 @@ prompt = hub.pull("hwchase17/react")
 print(prompt)
 
 # 初始化LLM，确保verbose=True
-llm = OpenAI(verbose=True)
+llm = OpenAI()
 
 # 初始化搜索工具，确保verbose=True
 search = SerpAPIWrapper()
